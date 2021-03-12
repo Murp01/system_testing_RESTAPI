@@ -6,7 +6,7 @@ class UserRegister(Resource):
     This resource allows users to register by sending a POST request with their username and password.
     """
 
-    parser = reqparse.requestParser()
+    parser = reqparse.RequestParser()
     parser.add_argument('username',
                         type=str,
                         required=True,
