@@ -15,7 +15,15 @@ class UserTest(BaseTest):
                                      json.loads(request.data))
 
     def test_register_and_login(self):
-        pass
+        with self.app() as client:
+            with self.app_context():
+                client.post('/register', data={'username': 'test', 'password': '1234'})
+                auth_request = client.post('/auth',
+                                           data=json.dumps({'username': 'test', 'password': '1234'}),
+                                           headers={'Content-Type': 'application/json'})
+
+                self.assertIn('access_token', json.loads(auth_request.data).keys())
+
 
     def test_register_duplicate_user(self):
         pass
