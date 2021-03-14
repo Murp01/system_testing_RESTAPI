@@ -17,6 +17,8 @@ class BaseTest(TestCase):
     def setUpClass(cls):
         app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'
         #app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:1234@localhost:5432/test'
+        app.config['DEBUG'] = False
+        app.config['PROPAGATE_EXCEPTIONS'] = True
         with app.app_context():
             db.init_app(app)
 
